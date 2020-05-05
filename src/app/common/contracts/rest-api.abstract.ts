@@ -1,6 +1,6 @@
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import AuthModel from '../../auth/common/models/auth.model';
+import LoginModel from '../../auth/common/models/login.model';
 import UserModel from '../../user/common/models/user.model';
 
 export default abstract class RestApiAbstract<ElementType> {
@@ -16,7 +16,7 @@ export default abstract class RestApiAbstract<ElementType> {
     return this.http.get<ElementType[]>(`${this.prefix}/${this.path}`);
   }
 
-  post(data: AuthModel): Observable<ElementType> {
+  post(data: LoginModel): Observable<ElementType> {
     return this.http.post<ElementType>(`${this.prefix}/${this.path}`, data);
   }
 

@@ -1,12 +1,26 @@
-<div class="login-form">
-  <form [formGroup]="loginForm" (ngSubmit)="submit()">
-    <!--    LOGIN INPUT  -->
-    <label for="login">Login</label>
-    <input id="login" [formControlName]="'login'" type="text">
-    <!--    PASSWORD INPUT  -->
-    <label for="password">Password</label>
-    <input id="password" [formControlName]="'password'" type="password">
-    <button type="submit" class="btn btn-primary">Log in</button>
-  </form>
+<div class="card">
+  <h5 class="card-header h3 font-weight-normal">Please, Log In</h5>
+  <div class="card-body">
+    <form [formGroup]="loginForm" (ngSubmit)="submit()">
+      <!--    LOGIN INPUT  -->
+      <label for="login">Login:</label>
+      <input id="login" class="form-control" [formControlName]="'login'" type="text" placeholder="Email address" required autofocus>
+      <!--    PASSWORD INPUT  -->
+      <label for="password">Password:</label>
+      <input id="password" [formControlName]="'password'" class="form-control" type="password">
+      <div class="mb-3 mt-2 checkbox">
+        <label>
+          <input type="checkbox" value="remember-me">
+          Remember me
+        </label>
+      </div>
+      <button type="submit" class="btn btn-primary btn-block">Log in</button>
+    </form>
+  </div>
+  <div class="card-footer text-right">
+    <span>
+      <a [routerLink]="['/registration']" routerLinkActive="$router_link-active$">Forgotten password?</a>/
+      <a [routerLink]="['/registration']" routerLinkActive="$router_link-active$">First Here?(Registration)</a>
+    </span>
+  </div>
 </div>
-

@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
+import LoggedInModel from '../models/logged-in.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  public token: string;
+  public loggedUser: LoggedInModel;
   constructor() { }
 }
