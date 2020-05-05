@@ -8,12 +8,14 @@ import {AuthModule} from './auth/auth.module';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {UserModule} from "./user/user.module";
+import { UsersListPageComponent } from './pages/users-list-page/users-list-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginPageComponent,
-    HomePageComponent
+    HomePageComponent,
+    UsersListPageComponent
   ],
   imports: [
     BrowserModule,

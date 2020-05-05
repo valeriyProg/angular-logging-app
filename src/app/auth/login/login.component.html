@@ -4,7 +4,7 @@
     <form [formGroup]="loginForm" (ngSubmit)="submit()">
       <!--    LOGIN INPUT  -->
       <label for="login">Login:</label>
-      <input id="login" class="form-control" [formControlName]="'login'" type="text" placeholder="Email address" required autofocus>
+      <input id="login" class="form-control" [formControlName]="'email'" type="email" name="email" placeholder="Email address" required autofocus>
       <!--    PASSWORD INPUT  -->
       <label for="password">Password:</label>
       <input id="password" [formControlName]="'password'" class="form-control" type="password">
@@ -24,3 +24,6 @@
     </span>
   </div>
 </div>
+
+
+

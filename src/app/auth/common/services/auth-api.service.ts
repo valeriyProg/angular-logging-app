@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 import RestApiAbstract from '../../../common/contracts/rest-api.abstract';
-import UserModel from '../../../user/common/models/user.model';
 import {HttpClient} from '@angular/common/http';
+import LoggedInModel from '../models/logged-in.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthApiService extends RestApiAbstract<UserModel> {
+export class AuthApiService extends RestApiAbstract<LoggedInModel> {
   protected  readonly  path = 'login';
   constructor(protected readonly http: HttpClient) {
     super();
