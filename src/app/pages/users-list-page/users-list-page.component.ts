@@ -1,7 +1,7 @@
 import {Component, DoCheck, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {AuthService} from '../../auth/common/services/auth.service';
 import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {UserService} from '../../user/common/services/user.service';
 import UserListModel from '../../user/common/models/user-list.model';
 import {UserApiService} from '../../user/common/services/user-api.service';
@@ -14,7 +14,9 @@ import {RoleEnum} from '../../common/enums/role.enum';
 })
 export class UsersListPageComponent implements OnInit {
   public roleEnum = RoleEnum;
-  constructor(private authService: AuthService,
+  public logOutVisible = false;
+  constructor(private router: Router,
+              private authService: AuthService,
               private http: HttpClient,
               private activatedRoute: ActivatedRoute,
               private  userService: UserService,
@@ -50,5 +52,10 @@ export class UsersListPageComponent implements OnInit {
       return this.getList(event);
     }
     this.getList();
+  }
+
+  logOut() {
+    this.authService.loggedUser = undefined;
+    this.router.navigate(['/login' ]);
   }
 }

@@ -2,6 +2,7 @@
   <thead>
   <tr>
     <th scope="col">#</th>
+    <th scope="col"></th>
     <th scope="col">User name</th>
     <th scope="col">Email</th>
     <th scope="col">Role</th>
@@ -13,10 +14,9 @@
   <tbody *ngIf="list; else loading">
   <tr *ngFor="let user of list.data">
     <th scope="row">{{ user.id }}</th>
-    <td>
-      <!--       <img [src]="'https://upload.wikimedia.org/wikipedia/commons/' + user.flag" class="mr-2" style="width: 20px">-->
-      {{ user.name }}
-    </td>
+    <td><i  [ngClass]="{ 'fa-user-o': user.role === 'user', 'fa-user-circle-o': user.role === 'admin' }"
+            class="fa" aria-hidden="true"></i></td>
+    <td>{{ user.name }}</td>
     <td>{{ user.email }}</td>
     <td>{{ user.role }}</td>
     <td>{{ user.created_at | date  }}</td>

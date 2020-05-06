@@ -1,8 +1,9 @@
 <header class="card-header h3 font-weight-normal">
   <div class="container flex-row flex-end">
-    <span>{{ this.authService.loggedUser.name }}</span>
-    <span>{{ this.authService.loggedUser.role_name }}</span>
-    <span>{{ this.authService.loggedUser.id }}</span>
+    <app-user-avatar [userData]="authService.loggedUser" (userClick)="logOutVisible = !logOutVisible"></app-user-avatar>
+    <div class="log-out" *ngIf="logOutVisible">
+      <button class="btn btn-outline-secondary" (click)="logOut()">Log Out</button>
+    </div>
   </div>
 </header>
 <main>

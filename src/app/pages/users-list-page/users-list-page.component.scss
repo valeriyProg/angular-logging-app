@@ -1,7 +1,26 @@
 header   {
   padding: 15px 0;
+  position: relative;
+
+  app-user-avatar {
+    display: block;
+    width: 35px;
+    height: 35px;
+  }
 }
 
 main {
   padding: 15px 0;
+}
+
+.log-out {
+  position: absolute;
+  height: 69px;
+  padding: 15px;
+  right: 65px;
+  bottom: 7px;
+  top: 102%;
+  background: #f1f1f1;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-top: none;
 }
