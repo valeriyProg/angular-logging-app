@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../../auth/common/services/auth.service';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient, HttpErrorResponse, HttpHeaders, HttpParams} from '@angular/common/http';
+import {ActivatedRoute} from '@angular/router';
+import {UserService} from '../../user/common/services/user.service';
+import UserListModel from '../../user/common/models/user-list.model';
+import {UserApiService} from "../../user/common/services/user-api.service";
+import {RoleEnum} from "../../common/enums/role.enum";
 
 @Component({
   selector: 'app-users-list-page',
@@ -8,18 +13,30 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
   styleUrls: ['./users-list-page.component.scss']
 })
 export class UsersListPageComponent implements OnInit {
-  constructor(private authService: AuthService, private http: HttpClient) { }
+  public roleEnum = RoleEnum;
+  constructor(private authService: AuthService,
+              private http: HttpClient,
+              private activatedRoute: ActivatedRoute,
+              private  userService: UserService,
+              private userApiService: UserApiService) { }
 
   private httpOptions = {
     headers: new HttpHeaders({
-      'Content-Type':  'application/json',
-      "Authorization": `Bearer ${this.authService.loggedUser.token}`
-    })
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${this.authService.loggedUser.token}`
+    }),
+    params: this.activatedRoute.snapshot.queryParams
   };
 
   ngOnInit() {
-    this.http.get('http://dev.angulartest.digital-era.ru/api/user?perPage=2', this.httpOptions).subscribe(result => {
-      console.log(result);
+    console.log(this.activatedRoute.snapshot.queryParams);
+    console.log(this.httpOptions.params);
+    this.userApiService.getList(this.httpOptions).subscribe(response => {
+      if (response instanceof HttpErrorResponse) {
+        return console.log(response.status);
+      }
+      this.userService.userList = response as UserListModel;
+      console.log(response);
     });
   }
 }

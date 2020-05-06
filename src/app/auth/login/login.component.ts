@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
         return console.log(response.status);
       }
       this.authService.loggedUser = response as LoggedInModel;
-      this.router.navigate(['/users-list']);
+      this.router.navigate(['/users-list' ], { queryParams: { perPage: -1 }});
     });
   }
 }

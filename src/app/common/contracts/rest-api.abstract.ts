@@ -2,19 +2,21 @@ import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {Observable, of} from 'rxjs';
 import UserModel from '../../user/common/models/user.model';
 import {catchError} from 'rxjs/operators';
+import {obj} from '../types';
+import UserListModel from '../../user/common/models/user-list.model';
 
 export default abstract class RestApiAbstract<ElementType> {
   protected abstract readonly http: HttpClient;
   private readonly prefix = 'http://dev.angulartest.digital-era.ru/api';
   protected abstract readonly path: string;
 
-  get(id: string): Observable<ElementType | HttpErrorResponse> {
-    return this.http.get<ElementType>(`${this.prefix}/${this.path}/${id}`)
+  get(id: string, options: obj): Observable<ElementType | HttpErrorResponse> {
+    return this.http.get<ElementType>(`${this.prefix}/${this.path}/${id}`, options)
       .pipe(catchError(this.handleError));
   }
 
-  getList(): Observable<ElementType[] | HttpErrorResponse> {
-    return this.http.get<ElementType[] | HttpErrorResponse>(`${this.prefix}/${this.path}`)
+  getList(options: obj): Observable<UserListModel | HttpErrorResponse> {
+    return this.http.get<UserListModel | HttpErrorResponse>(`${this.prefix}/${this.path}`, options)
       .pipe(catchError(this.handleError));
   }
 
@@ -23,8 +25,8 @@ export default abstract class RestApiAbstract<ElementType> {
       .pipe(catchError(this.handleError));
   }
 
-  delete(id: string): Observable<void | HttpErrorResponse> {
-    return this.http.delete<void>(`${this.prefix}/${this.path}/${id}`)
+  delete(id: string, options: obj): Observable<void | HttpErrorResponse> {
+    return this.http.delete<void>(`${this.prefix}/${this.path}/${id}`, options)
       .pipe(catchError(this.handleError));
   }
 
