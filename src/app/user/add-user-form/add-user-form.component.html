@@ -17,7 +17,7 @@
       <label for="password">Password:</label>
       <input id="password" [formControlName]="'password'" class="form-control mb-1" type="password" required>
       <!--   ROLE CHECKBOX CONTAINER   -->
-      <div class="btn-group btn-group-toggle mt-2" ngbRadioGroup name="radioBasic" [formControlName]="'role'">
+      <div class="btn-group btn-group-toggle mt-2 mb-2" ngbRadioGroup name="radioBasic" [formControlName]="'role'">
         <label ngbButtonLabel class="btn-primary">
           <input ngbButton type="radio" [value]="roleEnum.user"> User
         </label>

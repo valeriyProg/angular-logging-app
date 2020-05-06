@@ -1,19 +1,19 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
-import {AuthApiService} from '../common/services/auth-api.service';
-import {AuthService} from '../common/services/auth.service';
 import {Router} from '@angular/router';
+import {AuthService} from '../common/services/auth.service';
+import {FormDataService} from '../../form-data/common/services/form-data.service';
 import {HttpErrorResponse} from '@angular/common/http';
 import LoggedInModel from '../common/models/logged-in.model';
-import {FormDataService} from '../../form-data/common/services/form-data.service';
+import {AuthApiService} from '../common/services/auth-api.service';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  selector: 'app-registration',
+  templateUrl: './registration.component.html',
+  styleUrls: ['./registration.component.scss']
 })
-export class LoginComponent implements OnInit {
-  private loginForm: FormGroup;
+export class RegistrationComponent implements OnInit {
+  private registrationForm: FormGroup;
   constructor(private router: Router,
               private fb: FormBuilder,
               private authApiService: AuthApiService,
@@ -21,15 +21,16 @@ export class LoginComponent implements OnInit {
               private formDataService: FormDataService) { }
 
   ngOnInit() {
-    this.loginForm = this.fb.group({
+    this.registrationForm = this.fb.group({
+      name: '',
       email: '',
       password: ''
     });
   }
 
   submit() {
-    const loginData = this.formDataService.formGroupToFormData(this.loginForm);
-    this.authApiService.login(loginData).subscribe(response => {
+    const signData = this.formDataService.formGroupToFormData(this.registrationForm);
+    this.authApiService.registration(signData).subscribe(response => {
       if (response instanceof HttpErrorResponse) {
         return console.log(response.status);
       }

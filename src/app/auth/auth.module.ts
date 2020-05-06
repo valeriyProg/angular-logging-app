@@ -5,12 +5,14 @@ import {HttpClientModule} from '@angular/common/http';
 import {ReactiveFormsModule} from '@angular/forms';
 import {AuthApiService} from './common/services/auth-api.service';
 import {AuthService} from './common/services/auth.service';
-import {RouterModule} from "@angular/router";
+import {RouterModule} from '@angular/router';
+import { RegistrationComponent } from './registration/registration.component';
 
 
 @NgModule({
   declarations: [
-    LoginComponent
+    LoginComponent,
+    RegistrationComponent
   ],
   imports: [
     CommonModule,
@@ -20,10 +22,11 @@ import {RouterModule} from "@angular/router";
   ],
   providers: [
     AuthApiService,
-    AuthService
+    AuthService,
   ],
   exports: [
-    LoginComponent
+    LoginComponent,
+    RegistrationComponent
   ]
 })
 export class AuthModule { }

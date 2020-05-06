@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, DoCheck, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {AuthService} from '../../auth/common/services/auth.service';
 import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
 import {ActivatedRoute} from '@angular/router';
@@ -27,8 +27,16 @@ export class UsersListPageComponent implements OnInit {
     }),
     params: this.activatedRoute.snapshot.queryParams
   };
+  page: any = 0;
 
   ngOnInit() {
+    this.getList();
+  }
+
+  getList(page?: number) {
+    if (page) {
+      this.httpOptions.params = { page };
+    }
     this.userApiService.getList(this.httpOptions).subscribe(response => {
       if (response instanceof HttpErrorResponse) {
         return console.log(response.status);
@@ -37,14 +45,10 @@ export class UsersListPageComponent implements OnInit {
     });
   }
 
-  userAddedHandler(event: boolean) {
-    if (event) {
-      this.userApiService.getList(this.httpOptions).subscribe(response => {
-        if (response instanceof HttpErrorResponse) {
-          return console.log(response.status);
-        }
-        this.userService.userList = response as UserListModel;
-      });
+  changeListHandler(event: boolean | number) {
+    if (typeof event === 'number') {
+      return this.getList(event);
     }
+    this.getList();
   }
 }

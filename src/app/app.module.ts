@@ -9,12 +9,14 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {UserModule} from './user/user.module';
 import { UsersListPageComponent } from './pages/users-list-page/users-list-page.component';
 import {FormsModule} from "@angular/forms";
+import { RegistrationPageComponent } from './pages/registration-page/registration-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginPageComponent,
     UsersListPageComponent,
+    RegistrationPageComponent,
   ],
   imports: [
     BrowserModule,

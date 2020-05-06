@@ -15,7 +15,7 @@ import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
   styleUrls: ['./add-user-form.component.scss']
 })
 export class AddUserFormComponent implements OnInit {
-  @Output() userAdded: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output() updateList: EventEmitter<boolean> = new EventEmitter<boolean>();
   private addUserForm: FormGroup;
   roleEnum = RoleEnum;
   closeResult = '';
@@ -56,7 +56,7 @@ export class AddUserFormComponent implements OnInit {
       if (response instanceof HttpErrorResponse) {
         return console.log(response.status);
       }
-      this.userAdded.emit(true);
+      this.updateList.emit(true);
       this.initForm();
     });
   }

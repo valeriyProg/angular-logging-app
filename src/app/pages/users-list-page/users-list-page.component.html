@@ -9,9 +9,12 @@
   <div class="container">
     <h2 class="mb-3 mt-2">List of Users</h2>
     <div class="pt-2 pb-3" *ngIf="authService.loggedUser.role.toUpperCase() === roleEnum.admin">
-      <app-add-user-form (userAdded)="userAddedHandler($event)"></app-add-user-form>
+      <app-add-user-form (updateList)="changeListHandler($event)"></app-add-user-form>
     </div>
     <!--  USER TABLE  -->
-    <app-user-list [list]="this.userService.userList"></app-user-list>
+    <div *ngIf="userService.userList">
+      <!--     USER LIST TABLE   -->
+      <app-user-list [list]="userService.userList" (updateList)="changeListHandler($event)"></app-user-list>
+    </div>
   </div>
 </main>

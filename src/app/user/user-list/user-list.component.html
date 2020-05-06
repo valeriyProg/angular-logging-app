@@ -20,23 +20,13 @@
     <td>{{ user.email }}</td>
     <td>{{ user.role }}</td>
     <td>{{ user.created_at | date  }}</td>
-    <td *ngIf="authService.loggedUser.role.toUpperCase() === roleEnum.admin">
-      <button>Delete</button>
+    <td *ngIf="authService.loggedUser.role.toUpperCase() === roleEnum.admin" class="flex-row flex-end">
+      <button class="btn btn-outline-secondary" (click)="updateUser(user.id)">Edit</button>
+      <button class="btn btn-outline-danger ml-3" (click)="deleteUser(user.id)">Delete</button>
     </td>
   </tr>
   </tbody>
 </table>
-
-<!--    <div class="d-flex justify-content-between p-2">-->
-<!--      <ngb-pagination [collectionSize]="this.userService.userList.total" [(page)]="page" [pageSize]="pageSize">-->
-<!--      </ngb-pagination>-->
-
-<!--      <select class="custom-select" style="width: auto" [(ngModel)]="pageSize">-->
-<!--        <option [ngValue]="2">2 items per page</option>-->
-<!--        <option [ngValue]="4">4 items per page</option>-->
-<!--        <option [ngValue]="6">6 items per page</option>-->
-<!--      </select>-->
-<!--    </div>-->
 
 <ng-template #loading>
   <tbody>

@@ -5,7 +5,7 @@ import {UserApiService} from './common/services/user-api.service';
 import {UserService} from './common/services/user.service';
 import { AddUserFormComponent } from './add-user-form/add-user-form.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {NgbButtonsModule, NgbDatepickerModule, NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {NgbButtonsModule, NgbDatepickerModule, NgbModal, NgbPaginationModule} from "@ng-bootstrap/ng-bootstrap";
 
 
 @NgModule({
@@ -23,7 +23,8 @@ import {NgbButtonsModule, NgbDatepickerModule, NgbModal} from "@ng-bootstrap/ng-
     ReactiveFormsModule,
     NgbDatepickerModule,
     NgbButtonsModule,
-    FormsModule
+    FormsModule,
+    NgbPaginationModule
   ],
   exports: [
     AddUserFormComponent,
