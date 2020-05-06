@@ -14,7 +14,7 @@ export default abstract class RestApiAbstract<ElementType> {
   }
 
   getList(): Observable<ElementType[] | HttpErrorResponse> {
-    return this.http.get<ElementType[]>(`${this.prefix}/${this.path}`)
+    return this.http.get<ElementType[] | HttpErrorResponse>(`${this.prefix}/${this.path}`)
       .pipe(catchError(this.handleError));
   }
 

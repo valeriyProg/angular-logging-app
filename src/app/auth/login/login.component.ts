@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
     const loginData = this.formDataService.formGroupToFormData(this.loginForm);
     this.authApiService.post(loginData).subscribe(response => {
       if (response instanceof HttpErrorResponse) {
-        console.log(response.status);
+        return console.log(response.status);
       }
       this.authService.loggedUser = response as LoggedInModel;
       this.router.navigate(['/users-list']);
