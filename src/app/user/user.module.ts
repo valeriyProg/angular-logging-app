@@ -4,6 +4,8 @@ import { UserListComponent } from './user-list/user-list.component';
 import {UserApiService} from './common/services/user-api.service';
 import {UserService} from './common/services/user.service';
 import { AddUserFormComponent } from './add-user-form/add-user-form.component';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {NgbButtonsModule, NgbDatepickerModule, NgbModal} from "@ng-bootstrap/ng-bootstrap";
 
 
 @NgModule({
@@ -13,13 +15,19 @@ import { AddUserFormComponent } from './add-user-form/add-user-form.component';
   ],
   providers: [
     UserApiService,
-    UserService
+    UserService,
+    NgbModal
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    ReactiveFormsModule,
+    NgbDatepickerModule,
+    NgbButtonsModule,
+    FormsModule
   ],
   exports: [
-    AddUserFormComponent
+    AddUserFormComponent,
+    UserListComponent
   ]
 })
 export class UserModule { }

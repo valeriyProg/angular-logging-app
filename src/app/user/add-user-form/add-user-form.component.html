@@ -1,1 +1,35 @@
-<p>add-user-form works!</p>
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">User Information</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="addUserForm" (ngSubmit)="submit($event, modal)">
+      <!--  NAME INPUT  -->
+      <label for="name">Name:</label>
+      <input id="name" class="form-control mb-1" [formControlName]="'name'" type="text" name="name" placeholder="Enter your name" autofocus>
+      <!--    LOGIN INPUT  -->
+      <label for="login">Login:</label>
+      <input id="login" class="form-control mb-1" [formControlName]="'email'" type="email" name="email" placeholder="Email address">
+      <!--    PASSWORD INPUT  -->
+      <label for="password">Password:</label>
+      <input id="password" [formControlName]="'password'" class="form-control mb-1" type="password" required>
+      <!--   ROLE CHECKBOX CONTAINER   -->
+      <div class="btn-group btn-group-toggle mt-2" ngbRadioGroup name="radioBasic" [formControlName]="'role'">
+        <label ngbButtonLabel class="btn-primary">
+          <input ngbButton type="radio" [value]="roleEnum.user"> User
+        </label>
+        <label ngbButtonLabel class="btn-primary">
+          <input ngbButton type="radio" [value]="roleEnum.admin"> Admin
+        </label>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-outline-dark">Save</button>
+      </div>
+    </form>
+  </div>
+</ng-template>
+
+<button class="btn btn-lg btn-outline-primary" (click)="open(content)">Add User</button>

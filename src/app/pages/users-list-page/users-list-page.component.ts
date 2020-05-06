@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../../auth/common/services/auth.service';
-import {HttpClient, HttpErrorResponse, HttpHeaders, HttpParams} from '@angular/common/http';
+import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
 import {ActivatedRoute} from '@angular/router';
 import {UserService} from '../../user/common/services/user.service';
 import UserListModel from '../../user/common/models/user-list.model';
-import {UserApiService} from "../../user/common/services/user-api.service";
-import {RoleEnum} from "../../common/enums/role.enum";
+import {UserApiService} from '../../user/common/services/user-api.service';
+import {RoleEnum} from '../../common/enums/role.enum';
 
 @Component({
   selector: 'app-users-list-page',
@@ -29,14 +29,22 @@ export class UsersListPageComponent implements OnInit {
   };
 
   ngOnInit() {
-    console.log(this.activatedRoute.snapshot.queryParams);
-    console.log(this.httpOptions.params);
     this.userApiService.getList(this.httpOptions).subscribe(response => {
       if (response instanceof HttpErrorResponse) {
         return console.log(response.status);
       }
       this.userService.userList = response as UserListModel;
-      console.log(response);
     });
+  }
+
+  userAddedHandler(event: boolean) {
+    if (event) {
+      this.userApiService.getList(this.httpOptions).subscribe(response => {
+        if (response instanceof HttpErrorResponse) {
+          return console.log(response.status);
+        }
+        this.userService.userList = response as UserListModel;
+      });
+    }
   }
 }

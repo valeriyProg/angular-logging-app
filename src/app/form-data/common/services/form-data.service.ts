@@ -9,7 +9,7 @@ export class FormDataService {
     return this.objectToFormData(data.value);
   }
 
-  objectToFormData(data: { [key: string]: string | Blob }) {
+  objectToFormData(data: { [key: string]: string | Blob | any }) {
     const formData = new FormData();
 
     for (const key in data) {

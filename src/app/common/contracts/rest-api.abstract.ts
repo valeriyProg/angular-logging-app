@@ -20,8 +20,8 @@ export default abstract class RestApiAbstract<ElementType> {
       .pipe(catchError(this.handleError));
   }
 
-  post(data: FormData): Observable<ElementType | HttpErrorResponse> {
-    return this.http.post<ElementType | HttpErrorResponse>(`${this.prefix}/${this.path}`, data)
+  post(data: FormData | obj, options?: obj ): Observable<ElementType | HttpErrorResponse> {
+    return this.http.post<ElementType | HttpErrorResponse>(`${this.prefix}/${this.path}`, data, options)
       .pipe(catchError(this.handleError));
   }
 
