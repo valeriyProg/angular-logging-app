@@ -5,6 +5,7 @@
   </div>
   <div class="card-body">
     <form [formGroup]="editForm" (ngSubmit)="submit()">
+      <!--    NAME INPUT  -->
       <label for="name">Name:</label>
       <input id="name" class="form-control mb-1" [formControlName]="'name'" type="text" placeholder="Enter your name" autofocus>
       <!--    LOGIN INPUT  -->
@@ -13,7 +14,7 @@
       <!--    PASSWORD INPUT  -->
       <label for="password">Password:</label>
       <input id="password" [formControlName]="'password'" class="form-control" type="password">
-
+      <!--   ROLE SELECT   -->
       <div class="btn-group btn-group-toggle mt-2 mb-2" ngbRadioGroup name="radioBasic" [formControlName]="'role'">
         <label ngbButtonLabel class="btn-primary">
           <input ngbButton type="radio" [value]="roleEnum.user"> User
@@ -22,8 +23,9 @@
           <input ngbButton type="radio" [value]="roleEnum.admin"> Admin
         </label>
       </div>
+      <!--   SUBMIT BUTTON   -->
       <button type="submit" class="btn btn-primary btn-block mt-3">Update User</button>
-
+      <!--   VALIDATION ERROR   -->
       <div class="error cross-validation-error-message alert alert-danger mt-2" *ngIf="invalidForm">
         Invalid form input value
       </div>

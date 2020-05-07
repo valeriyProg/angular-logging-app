@@ -38,22 +38,34 @@ export class UsersListPageComponent implements OnInit {
 
   getList(page?: number) {
     if (page) {
-      this.httpOptions.params = { page };
+      this.httpOptions.params = { ...this.httpOptions.params, page};
     }
     this.userApiService.getList(this.httpOptions).subscribe(response => {
       if (response instanceof HttpErrorResponse) {
         return console.log(response.status);
       }
       this.userService.userList = response as UserListModel;
+      this.userService.userListLoaded.next(true);
     });
   }
 
-  changeListHandler(event: boolean | number) {
+  changeCountPage(event: number) {
+    this.httpOptions.params = { perPage: event };
     this.getList();
   }
 
   logOut() {
     this.authService.loggedUser = undefined;
     this.router.navigate(['/login' ]);
+  }
+
+  loadPage(path: string  | number) {
+    if ( typeof path === 'number') {
+      return this.getList(path);
+    }
+    this.http.get<UserListModel>(path, this.httpOptions).subscribe(value => {
+      this.userService.userList = value;
+      this.userService.userListLoaded.next(true);
+    });
   }
 }

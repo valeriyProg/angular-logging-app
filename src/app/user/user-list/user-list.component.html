@@ -28,6 +28,9 @@
   </tbody>
 </table>
 
+<!-- PAGINATION -->
+<app-pagination (loadListPage)="loadListPage.next($event)" (changeCountPage)="changedPageCount.emit($event)"></app-pagination>
+
 <ng-template #loading>
   <tbody>
   <tr>

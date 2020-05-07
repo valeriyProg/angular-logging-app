@@ -1,1 +1,27 @@
-<p>pagination works!</p>
+<div class="pagination-wrapper flex-row space-between">
+  <div class="controls flex-row">
+    <!--  FIRST PAGE BUTTON  -->
+    <button  class="btn btn-light"
+             (click)="loadListPage.emit(userService.userList.first_page_url)" [disabled]="!!!userService.userList.prev_page_url">First</button>
+    <div class="page-controls flex-row" *ngIf="controlsCount">
+      <!--    PAGE BUTTONS   -->
+      <button class="btn" [ngClass]="{'btn-primary': this.userService.userList.current_page === i + 1,
+                                      'btn-light': this.userService.userList.current_page !== i + 1 }"
+              (click)="loadListPage.emit(i + 1)"
+              *ngFor="let item of controlsCount; index as i">{{ i + 1 }}</button>
+    </div>
+    <!--  LAST PAGE BUTTON  -->
+    <button  class="btn btn-light" (click)="loadListPage.emit(userService.userList.last_page_url)"
+             [disabled]="!!!userService.userList.next_page_url">Last</button>
+  </div>
+  <div class="select">
+    <!--  COUNT PAGE SELECT  -->
+    <select class="custom-select" style="width: auto" (change)="this.changeCountPage.next(this.perPage)" [(ngModel)]="perPage">
+     <option [ngValue]="2">2 items per page</option>
+     <option [ngValue]="3">3 items per page</option>
+     <option [ngValue]="4">4 items per page</option>
+     <option [ngValue]="5">5 items per page</option>
+     <option [ngValue]="6">6 items per page</option>
+   </select>
+  </div>
+</div>

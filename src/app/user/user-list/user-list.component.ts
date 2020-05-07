@@ -18,6 +18,8 @@ export class UserListComponent implements OnInit {
   @Input() page;
   @Output() updateListItem: EventEmitter<number> = new EventEmitter<number>();
   @Output() itemDeleted: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output() loadListPage: EventEmitter<string | number> = new EventEmitter<string | number>();
+  @Output() changedPageCount: EventEmitter<number> = new EventEmitter<number>();
   public roleEnum = RoleEnum;
   constructor(private authService: AuthService,
               private http: HttpClient,
@@ -46,16 +48,5 @@ export class UserListComponent implements OnInit {
 
   updateUser(id: number) {
     this.updateListItem.emit(id);
-    // this.userApiService.update(id, {
-    //   name: 'new admin-12313',
-    //   email: 'x331y@xy11.com',
-    //   password: 'xy',
-    //   role: 'admin'
-    // }, this.httpOptions ).subscribe(response => {
-    //   if (response instanceof HttpErrorResponse) {
-    //     return console.log(response.status);
-    //   }
-    //   this.updateList.emit(true);
-    // });
   }
 }

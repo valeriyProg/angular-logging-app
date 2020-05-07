@@ -8,6 +8,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {NgbButtonsModule, NgbDatepickerModule, NgbModal, NgbPaginationModule} from "@ng-bootstrap/ng-bootstrap";
 import { UserAvatarComponent } from './user-avatar/user-avatar.component';
 import { EditFormComponent } from './edit-form/edit-form.component';
+import {PaginationModule} from "../pagination/pagination.module";
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { EditFormComponent } from './edit-form/edit-form.component';
     NgbDatepickerModule,
     NgbButtonsModule,
     FormsModule,
-    NgbPaginationModule
+    NgbPaginationModule,
+    PaginationModule
   ],
   exports: [
     AddUserFormComponent,

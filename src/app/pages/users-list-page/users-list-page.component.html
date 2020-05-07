@@ -18,8 +18,11 @@
     <div *ngIf="userService.userList">
       <!--     USER LIST TABLE   -->
       <app-user-list [list]="userService.userList" (updateListItem) ="this.userIdToEdit = $event"
-                     (itemDeleted)="changeListHandler($event)"></app-user-list>
-      <app-edit-form (updateList)="changeListHandler($event); userIdToEdit = undefined"
+                     (itemDeleted)="getList()"
+                     (changedPageCount)="changeCountPage($event)"
+                     (loadListPage)="loadPage($event)"
+      ></app-user-list>
+      <app-edit-form (updateList)="getList(); userIdToEdit = undefined"
                      (close)="userIdToEdit = undefined"
                      *ngIf="userIdToEdit" [userId]="userIdToEdit"></app-edit-form>
     </div>
