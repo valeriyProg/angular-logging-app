@@ -1,13 +1,14 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {AuthApiService} from '../../auth/common/services/auth-api.service';
 import {AuthService} from '../../auth/common/services/auth.service';
 import {FormDataService} from '../../form-data/common/services/form-data.service';
-import {ModalDismissReasons, NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {RoleEnum} from '../../common/enums/role.enum';
 import {UserApiService} from '../common/services/user-api.service';
 import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
+import FormControlValidator from '../../common/services/form-control.validator';
 
 @Component({
   selector: 'app-add-user-form',
@@ -18,9 +19,10 @@ export class AddUserFormComponent implements OnInit {
   @Output() updateList: EventEmitter<boolean> = new EventEmitter<boolean>();
   private addUserForm: FormGroup;
   roleEnum = RoleEnum;
-  closeResult = '';
+  invalidForm = false;
   constructor(private router: Router,
               private fb: FormBuilder,
+              private controlValidator: FormControlValidator,
               private authApiService: AuthApiService,
               private authService: AuthService,
               private http: HttpClient,
@@ -39,16 +41,34 @@ export class AddUserFormComponent implements OnInit {
     this.initForm();
   }
 
+  showErrorMessage() {
+    this.invalidForm = true;
+    setTimeout(() => {
+      this.invalidForm = false;
+    }, 2000);
+  }
+
   private initForm() {
     this.addUserForm = this.fb.group({
-      name: '',
-      email: '',
-      password: '',
+      name: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required]],
       role: this.roleEnum.admin
     });
   }
 
   submit(e: Event, modal: any) {
+    const isInvalidFormControls = {
+      name: this.controlValidator.isControlInvalid('name', this.addUserForm),
+      email: this.controlValidator.isControlInvalid('email', this.addUserForm),
+      password: this.controlValidator.isControlInvalid('password', this.addUserForm)
+    };
+
+    if (isInvalidFormControls.name || isInvalidFormControls.email || isInvalidFormControls.password) {
+      this.showErrorMessage();
+      return;
+    }
+
     modal.close('Save click');
     this.addUserForm.patchValue({ role: this.addUserForm.get('role').value.toLowerCase()});
 
@@ -62,20 +82,6 @@ export class AddUserFormComponent implements OnInit {
   }
 
   open(content) {
-    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
-      this.closeResult = `Closed with: ${result}`;
-    }, (reason) => {
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-    });
-  }
-
-  private getDismissReason(reason: any): string {
-    if (reason === ModalDismissReasons.ESC) {
-      return 'by pressing ESC';
-    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
-      return 'by clicking on a backdrop';
-    } else {
-      return `with: ${reason}`;
-    }
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'});
   }
 }

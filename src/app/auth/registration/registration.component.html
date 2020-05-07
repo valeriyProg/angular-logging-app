@@ -12,6 +12,12 @@
       <input id="password" [formControlName]="'password'" class="form-control" type="password">
       <button type="submit" class="btn btn-primary btn-block mt-4">Registration</button>
     </form>
+
+    <!--  EMPTY FIELD VALIDATION  -->
+    <div class="error cross-validation-error-message alert alert-danger mt-2" *ngIf="invalidForm">
+      Invalid form input value
+    </div>
+
   </div>
   <div class="card-footer text-right">
     <span>
