@@ -28,6 +28,7 @@ export class RegistrationComponent implements OnInit {
       name: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]],
+      role: 'admin'
     });
   }
 
@@ -45,21 +46,16 @@ export class RegistrationComponent implements OnInit {
         return console.log(response.status);
       }
       this.authService.loggedUser = response as LoggedInModel;
-      this.router.navigate(['/users-list' ], { queryParams: { perPage: -1 }});
+      this.router.navigate(['/users-list' ], { queryParams: { perPage: 5 }});
     });
   }
 
   submit() {
-    const isInvalidFormControls = {
-      name: this.controlValidator.isControlInvalid('name', this.registrationForm),
-      email: this.controlValidator.isControlInvalid('email', this.registrationForm),
-      password: this.controlValidator.isControlInvalid('password', this.registrationForm)
-    };
-
-    if (isInvalidFormControls.email || isInvalidFormControls.name  || isInvalidFormControls.password) {
+    if (!this.registrationForm.valid) {
       this.showErrorMessage();
       return;
     }
+
     this.registration();
   }
 }

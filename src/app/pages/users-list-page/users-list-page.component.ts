@@ -1,4 +1,4 @@
-import {Component, DoCheck, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../../auth/common/services/auth.service';
 import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -48,9 +48,6 @@ export class UsersListPageComponent implements OnInit {
   }
 
   changeListHandler(event: boolean | number) {
-    if (typeof event === 'number') {
-      return this.getList(event);
-    }
     this.getList();
   }
 

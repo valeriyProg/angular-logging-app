@@ -17,7 +17,8 @@
     <!--  USER TABLE  -->
     <div *ngIf="userService.userList">
       <!--     USER LIST TABLE   -->
-      <app-user-list [list]="userService.userList" (updateList)="changeListHandler($event)"></app-user-list>
+      <app-user-list [list]="userService.userList" (updateList)="changeListHandler($event)"
+                     (itemDeleted)="changeListHandler($event)"></app-user-list>
     </div>
   </div>
 </main>

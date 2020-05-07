@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import { Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {AuthApiService} from '../../auth/common/services/auth-api.service';
@@ -58,13 +58,7 @@ export class AddUserFormComponent implements OnInit {
   }
 
   submit(e: Event, modal: any) {
-    const isInvalidFormControls = {
-      name: this.controlValidator.isControlInvalid('name', this.addUserForm),
-      email: this.controlValidator.isControlInvalid('email', this.addUserForm),
-      password: this.controlValidator.isControlInvalid('password', this.addUserForm)
-    };
-
-    if (isInvalidFormControls.name || isInvalidFormControls.email || isInvalidFormControls.password) {
+    if (!this.addUserForm.valid) {
       this.showErrorMessage();
       return;
     }

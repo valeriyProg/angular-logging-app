@@ -14,7 +14,7 @@ export class UserApiService {
   private readonly path: string = 'user';
   constructor(private readonly http: HttpClient) { }
 
-  get(id: string, options: obj): Observable<UserModel | HttpErrorResponse> {
+  get(id: number, options: obj): Observable<UserModel | HttpErrorResponse> {
     return this.http.get<UserModel>(`${this.prefix}/${this.path}/${id}`, options)
       .pipe(catchError(this.handleError));
   }

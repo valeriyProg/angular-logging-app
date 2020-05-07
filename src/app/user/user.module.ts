@@ -8,12 +8,11 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {NgbButtonsModule, NgbDatepickerModule, NgbModal, NgbPaginationModule} from "@ng-bootstrap/ng-bootstrap";
 import { UserAvatarComponent } from './user-avatar/user-avatar.component';
 
-
 @NgModule({
   declarations: [
     UserListComponent,
     AddUserFormComponent,
-    UserAvatarComponent
+    UserAvatarComponent,
   ],
   providers: [
     UserApiService,
