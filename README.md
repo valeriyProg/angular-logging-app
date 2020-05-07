@@ -1,10 +1,10 @@
 # Angular Logging App
 
 ## Admin Role Preview
-![Admin Role Preview](https://github.com/valeriyProg/ANGULAR_ONLINE_SHOP/blob/master/Admin-preview%20.gif)
+![Admin Role Preview](https://github.com/valeriyProg/angular-logging-app/blob/master/admin-role-preview.gif)
 
 ## User Role Preview
-![User Role Preview](https://github.com/valeriyProg/ANGULAR_ONLINE_SHOP/blob/master/Admin-preview%20.gif)
+![User Role Preview](https://github.com/valeriyProg/angular-logging-app/blob/master/user-role-preview.gif)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.19.
 
