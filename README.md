@@ -1,5 +1,3 @@
-# Angular Logging App
-
 ## Admin Role Preview
 ![Admin Role Preview](https://github.com/valeriyProg/angular-logging-app/blob/master/admin-role-preview.gif)
 
