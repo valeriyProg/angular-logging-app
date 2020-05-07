@@ -15,6 +15,7 @@ import {RoleEnum} from '../../common/enums/role.enum';
 export class UsersListPageComponent implements OnInit {
   public roleEnum = RoleEnum;
   public logOutVisible = false;
+  public userIdToEdit;
   constructor(private router: Router,
               private authService: AuthService,
               private http: HttpClient,

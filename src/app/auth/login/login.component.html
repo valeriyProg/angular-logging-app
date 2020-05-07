@@ -8,13 +8,7 @@
       <!--    PASSWORD INPUT  -->
       <label for="password">Password:</label>
       <input id="password" [formControlName]="'password'" class="form-control" type="password">
-      <div class="mb-3 mt-2 checkbox">
-        <label>
-          <input type="checkbox" value="remember-me">
-          Remember me
-        </label>
-      </div>
-      <button type="submit" class="btn btn-primary btn-block">Log in</button>
+      <button type="submit" class="btn btn-primary btn-block mt-3">Log in</button>
     </form>
 
     <!--  EMPTY FIELD VALIDATION  -->
@@ -24,7 +18,7 @@
 
     <!-- INVALID LOGIN OR PASSWORD -->
     <div *ngIf="userNotFoundError"
-         class="cross-validation-error-message alert alert-danger mt-2">
+         class="cross-validation-error-message alert alert-danger mt-3">
       Invalid login or password
     </div>
 

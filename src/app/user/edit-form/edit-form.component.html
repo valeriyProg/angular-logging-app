@@ -1,0 +1,32 @@
+<div class="card edit-form-card">
+  <div class="card-header flex-row space-between">
+    <h5 class="h3 font-weight-normal">Edit user information</h5>
+    <button class="btn btn-light" (click)="close.emit(true)">Close</button>
+  </div>
+  <div class="card-body">
+    <form [formGroup]="editForm" (ngSubmit)="submit()">
+      <label for="name">Name:</label>
+      <input id="name" class="form-control mb-1" [formControlName]="'name'" type="text" placeholder="Enter your name" autofocus>
+      <!--    LOGIN INPUT  -->
+      <label for="login">Login:</label>
+      <input id="login" class="form-control" [formControlName]="'email'" type="email" placeholder="Email address">
+      <!--    PASSWORD INPUT  -->
+      <label for="password">Password:</label>
+      <input id="password" [formControlName]="'password'" class="form-control" type="password">
+
+      <div class="btn-group btn-group-toggle mt-2 mb-2" ngbRadioGroup name="radioBasic" [formControlName]="'role'">
+        <label ngbButtonLabel class="btn-primary">
+          <input ngbButton type="radio" [value]="roleEnum.user"> User
+        </label>
+        <label ngbButtonLabel class="btn-primary">
+          <input ngbButton type="radio" [value]="roleEnum.admin"> Admin
+        </label>
+      </div>
+      <button type="submit" class="btn btn-primary btn-block mt-3">Update User</button>
+
+      <div class="error cross-validation-error-message alert alert-danger mt-2" *ngIf="invalidForm">
+        Invalid form input value
+      </div>
+    </form>
+  </div>
+</div>

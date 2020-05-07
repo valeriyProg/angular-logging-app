@@ -16,7 +16,7 @@ import {FormDataService} from '../../form-data/common/services/form-data.service
 export class UserListComponent implements OnInit {
   @Input() list: UserListModel;
   @Input() page;
-  @Output() updateList: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output() updateListItem: EventEmitter<number> = new EventEmitter<number>();
   @Output() itemDeleted: EventEmitter<boolean> = new EventEmitter<boolean>();
   public roleEnum = RoleEnum;
   constructor(private authService: AuthService,
@@ -45,16 +45,17 @@ export class UserListComponent implements OnInit {
   }
 
   updateUser(id: number) {
-    this.userApiService.update(id, {
-      name: 'new admin-1',
-      email: 'xy@xy.com',
-      password: 'xy',
-      role: 'admin'
-    }, this.httpOptions ).subscribe(response => {
-      if (response instanceof HttpErrorResponse) {
-        return console.log(response.status);
-      }
-      this.updateList.emit(true);
-    });
+    this.updateListItem.emit(id);
+    // this.userApiService.update(id, {
+    //   name: 'new admin-12313',
+    //   email: 'x331y@xy11.com',
+    //   password: 'xy',
+    //   role: 'admin'
+    // }, this.httpOptions ).subscribe(response => {
+    //   if (response instanceof HttpErrorResponse) {
+    //     return console.log(response.status);
+    //   }
+    //   this.updateList.emit(true);
+    // });
   }
 }

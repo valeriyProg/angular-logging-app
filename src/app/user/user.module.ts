@@ -7,12 +7,14 @@ import { AddUserFormComponent } from './add-user-form/add-user-form.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {NgbButtonsModule, NgbDatepickerModule, NgbModal, NgbPaginationModule} from "@ng-bootstrap/ng-bootstrap";
 import { UserAvatarComponent } from './user-avatar/user-avatar.component';
+import { EditFormComponent } from './edit-form/edit-form.component';
 
 @NgModule({
   declarations: [
     UserListComponent,
     AddUserFormComponent,
     UserAvatarComponent,
+    EditFormComponent,
   ],
   providers: [
     UserApiService,
@@ -30,7 +32,8 @@ import { UserAvatarComponent } from './user-avatar/user-avatar.component';
   exports: [
     AddUserFormComponent,
     UserListComponent,
-    UserAvatarComponent
+    UserAvatarComponent,
+    EditFormComponent
   ]
 })
 export class UserModule { }
