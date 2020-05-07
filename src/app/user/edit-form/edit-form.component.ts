@@ -58,11 +58,5 @@ export class EditFormComponent implements OnInit {
       }
       this.updateList.emit(true);
     });
-    // this.userApiService.post(this.editForm.value, this.httpOptions).subscribe(response => {
-    //   if (response instanceof HttpErrorResponse) {
-    //     return console.log(response.status);
-    //   }
-    //   this.updateList.emit(true);
-    // });
   }
 }

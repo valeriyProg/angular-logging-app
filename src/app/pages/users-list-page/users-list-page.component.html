@@ -1,7 +1,9 @@
 <header class="card-header h3 font-weight-normal">
   <div class="container flex-row flex-end">
     <div class="user-avatar-wrapper">
+      <!--  USER AVATAR    -->
       <app-user-avatar [userData]="authService.loggedUser" (userClick)="logOutVisible = !logOutVisible"></app-user-avatar>
+      <!--   LOG OUT AND    -->
       <div class="log-out" *ngIf="logOutVisible">
         <button class="btn btn-outline-secondary" (click)="logOut()">Log Out</button>
       </div>
@@ -11,8 +13,9 @@
 <main>
   <div class="container">
     <h2 class="mb-3 mt-2">List of Users</h2>
+    <!--  ADD USER FORM COMPONENT  -->
     <div class="pt-2 pb-3" *ngIf="authService.loggedUser.role.toUpperCase() === roleEnum.admin">
-      <app-add-user-form (updateList)="changeListHandler($event)"></app-add-user-form>
+      <app-add-user-form (updateList)="getList()"></app-add-user-form>
     </div>
     <!--  USER TABLE  -->
     <div *ngIf="userService.userList">
@@ -22,6 +25,7 @@
                      (changedPageCount)="changeCountPage($event)"
                      (loadListPage)="loadPage($event)"
       ></app-user-list>
+      <!--   USER EDIT FORM    -->
       <app-edit-form (updateList)="getList(); userIdToEdit = undefined"
                      (close)="userIdToEdit = undefined"
                      *ngIf="userIdToEdit" [userId]="userIdToEdit"></app-edit-form>

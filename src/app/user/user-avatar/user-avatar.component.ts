@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import UserModel from '../common/models/user.model';
 import LoggedInModel from '../../auth/common/models/logged-in.model';
 
@@ -7,13 +7,7 @@ import LoggedInModel from '../../auth/common/models/logged-in.model';
   templateUrl: './user-avatar.component.html',
   styleUrls: ['./user-avatar.component.scss']
 })
-export class UserAvatarComponent implements OnInit {
+export class UserAvatarComponent  {
   @Input() userData: UserModel | LoggedInModel;
   @Output() userClick: EventEmitter<boolean> = new EventEmitter<boolean>();
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-
 }

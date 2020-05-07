@@ -20,6 +20,7 @@
     <td>{{ user.email }}</td>
     <td>{{ user.role }}</td>
     <td>{{ user.created_at | date  }}</td>
+    <!--  FIELD EDIT  BUTTONS -->
     <td *ngIf="authService.loggedUser.role.toUpperCase() === roleEnum.admin" class="flex-row flex-end">
       <button class="btn btn-outline-secondary" (click)="updateUser(user.id)">Edit</button>
       <button class="btn btn-outline-danger ml-3" (click)="deleteUser(user.id)">Delete</button>

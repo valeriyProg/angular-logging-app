@@ -1,6 +1,6 @@
 import {Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core';
 import {UserService} from '../../user/common/services/user.service';
-import {Subscription} from 'rxjs';
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-pagination',
@@ -21,7 +21,7 @@ export class PaginationComponent implements OnInit, OnDestroy {
       if (value && this.userService.userList) {
         this.perPage = this.userService.userList.per_page;
         if (this.userService.userList.total % this.userService.userList.per_page ) {
-          let result = (this.userService.userList.total / this.userService.userList.per_page).toFixed(0);
+          const result = (this.userService.userList.total / this.userService.userList.per_page).toFixed(0);
           this.controlsCount = new Array(+result + 1);
         } else {
           this.controlsCount = new Array(this.userService.userList.total / this.userService.userList.per_page);
